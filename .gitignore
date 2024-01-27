@@ -1,0 +1,12 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+tmp/
+tenant_realm-*.gem
+log
+.byebug_history
+storage
