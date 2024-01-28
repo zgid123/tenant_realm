@@ -10,3 +10,6 @@ tenant_realm-*.gem
 log
 .byebug_history
 storage
+node_modules
+docs/.vitepress/cache
+docs/.vitepress/dist

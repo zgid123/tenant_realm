@@ -4,5 +4,8 @@
   },
   "[ruby]": {
     "editor.defaultFormatter": "Shopify.ruby-lsp"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
   }
 }
