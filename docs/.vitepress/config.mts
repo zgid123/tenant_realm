@@ -4,6 +4,7 @@ export default defineConfig({
   title: 'Tenant Realm',
   description: 'Tenant Realm Doc',
   srcDir: './src',
+  base: '/repo/',
   themeConfig: {
     nav: [
       {
