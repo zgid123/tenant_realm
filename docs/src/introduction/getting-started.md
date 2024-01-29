@@ -11,6 +11,27 @@
 gem 'tenant_realm'
 ```
 
+After installing the gem, configure your `database.yml`.
+
+```yml
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 5) %>
+  timeout: 5000
+
+development:
+  primary:
+    <<: *default
+    database: your_database_development
+
+test:
+  primary:
+    <<: *default
+    database: your_database_test
+```
+
 ## Configuration
 
 Tenant Realm provides a rake task to generate a configuration file.
