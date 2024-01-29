@@ -43,6 +43,10 @@ export default defineConfig({
         text: 'API Reference',
         link: '/api-reference',
       },
+      {
+        text: 'Changelogs',
+        link: '/changelogs',
+      },
     ],
     outline: {
       level: [2, 3],
