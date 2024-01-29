@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
             bin/
             test/
             spec/
+            docs/
             features/
             .git
             .circleci

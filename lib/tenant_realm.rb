@@ -33,10 +33,10 @@ module TenantRealm
         identifier = Utils.identifier_resolver(request)
         tenant = Tenant.tenant(identifier)
         db_config = Utils.dig_db_config(tenant:)
-        shard = Utils.shard_name_from_tenant(tenant:)
 
         return :primary if db_config.blank?
 
+        shard = Utils.shard_name_from_tenant(tenant:)
         Config.current.tenant = tenant
         DbContext.add_shard(shard:, db_config:)
         ActiveRecord::Base.connects_to(shards: DbContext.connected_shards)

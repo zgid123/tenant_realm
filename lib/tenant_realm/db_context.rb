@@ -55,10 +55,10 @@ module TenantRealm
           YAML.dump(config, f)
         end
 
-        ActiveRecord::Base.configurations.configurations << ActiveRecord::DatabaseConfigurations::HashConfig.new(
-          Rails.env,
+        ActiveRecord::Base.configurations.configurations << build_db_hash_config(
           shard_name,
-          tenant_shard_config
+          tenant_shard_config,
+          Rails.env
         )
 
         sym_shard = shard_name.to_sym
@@ -110,7 +110,29 @@ module TenantRealm
         db_config
       end
 
+      def dump_schema(db_config:, shard:)
+        return unless ActiveRecord.dump_schema_after_migration
+
+        schema_format = ENV.fetch('SCHEMA_FORMAT', ActiveRecord.schema_format).to_sym
+        ActiveRecord::Tasks::DatabaseTasks.dump_schema(
+          build_db_hash_config(
+            shard.to_s,
+            db_config,
+            Rails.env
+          ),
+          schema_format
+        )
+      end
+
       private
+
+      def build_db_hash_config(shard, db_config, env_name = Rails.env)
+        ActiveRecord::DatabaseConfigurations::HashConfig.new(
+          env_name,
+          shard,
+          db_config
+        )
+      end
 
       def build_connected_shards
         @@shards.keys.each_with_object({}) do |shard, shards|
