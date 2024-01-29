@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
             bin/
             test/
             spec/
-            docs/
             features/
             .git
             .circleci
@@ -35,6 +34,10 @@ Gem::Specification.new do |spec|
             .vscode/settings.json
             LICENSE.txt
             lefthook.yml
+            docs/
+            biome.json
+            package.json
+            pnpm-lock.yaml
           ]
         )
     end
