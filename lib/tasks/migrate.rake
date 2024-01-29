@@ -5,6 +5,16 @@ namespace :tenant_realm do
   task migrate: :environment do
     tenants = TenantRealm::Tenant.tenants
 
+    puts 'Migrating primary'
+    root_db_config = TenantRealm::DbContext.root_db_config
+    ActiveRecord::Tasks::DatabaseTasks.with_temporary_connection(root_db_config) do
+      ActiveRecord::Tasks::DatabaseTasks.migrate
+      TenantRealm::DbContext.dump_schema(
+        shard: :primary,
+        db_config: root_db_config
+      )
+    end
+
     tenants.each do |tenant|
       shard = TenantRealm::Utils.shard_name_from_tenant(tenant:)
 

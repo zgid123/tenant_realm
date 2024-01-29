@@ -23,6 +23,8 @@ module TenantRealm
         end
 
         def cache_tenant(tenant)
+          return tenant if tenant.blank?
+
           tenant_unique_keys(tenant).each do |key|
             cached_tenant = tenant_kredis(key)
             cached_tenant.value = tenant
