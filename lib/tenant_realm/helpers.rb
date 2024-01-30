@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# internal usage
+# no need hash parameters
 module TenantRealm
   class Helpers
     class << self

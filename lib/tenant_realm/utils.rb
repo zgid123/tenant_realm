@@ -13,7 +13,7 @@ module TenantRealm
         (Config.fetch_tenants.call.presence || []).map(&:deep_symbolize_keys)
       end
 
-      def fetch_tenant(identifier)
+      def fetch_tenant(identifier:)
         Helpers.raise_if_not_proc(Config.fetch_tenant, 'config.fetch_tenant')
 
         Config.fetch_tenant.call(identifier)&.deep_symbolize_keys
@@ -41,7 +41,7 @@ module TenantRealm
         shard.underscore
       end
 
-      def identifier_resolver(request)
+      def identifier_resolver(request:)
         raise Error, 'config.identifier_resolver must be provided' if Config.identifier_resolver.blank?
 
         Helpers.raise_if_not_proc(Config.identifier_resolver, 'config.identifier_resolver')
