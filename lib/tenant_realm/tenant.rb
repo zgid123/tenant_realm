@@ -10,10 +10,12 @@ module TenantRealm
     }
 
     class << self
-      def tenants
+      def tenants(force_load: false)
         if cache.present?
-          tenants = cache.tenants
-          return tenants if tenants.present?
+          unless force_load
+            tenants = cache.tenants
+            return tenants if tenants.present?
+          end
 
           tenants = Utils.fetch_tenants
           cache.cache_tenants(tenants:)
@@ -23,10 +25,12 @@ module TenantRealm
         end
       end
 
-      def tenant(identifier:)
+      def tenant(identifier:, force_load: false)
         if cache.present?
-          tenant = cache.tenant(identifier:)
-          return tenant if tenant.present?
+          unless force_load
+            tenant = cache.tenant(identifier:)
+            return tenant if tenant.present?
+          end
 
           tenant = Utils.fetch_tenant(identifier:)
           cache.cache_tenant(tenant:)
