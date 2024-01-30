@@ -9,7 +9,7 @@ module TenantRealm
   module Cache
     class KredisCache < BaseCache
       class << self
-        def cache_tenants(tenants)
+        def cache_tenants(tenants:)
           return if tenants.blank?
 
           cached_tenants = tenants_kredis
@@ -22,7 +22,7 @@ module TenantRealm
           cached_tenants.value&.map(&:deep_symbolize_keys) || []
         end
 
-        def cache_tenant(tenant)
+        def cache_tenant(tenant:)
           return tenant if tenant.blank?
 
           tenant_unique_keys(tenant).each do |key|
@@ -33,7 +33,7 @@ module TenantRealm
           tenant
         end
 
-        def tenant(identifier)
+        def tenant(identifier:)
           cached_tenant = tenant_kredis(identifier)
           cached_tenant.value&.deep_symbolize_keys
         end

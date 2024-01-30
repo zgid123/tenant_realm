@@ -4,7 +4,7 @@ module TenantRealm
   module Cache
     class BaseCache
       class << self
-        def cache_tenants(_tenants)
+        def cache_tenants(tenants:)
           raise NotImplementedError
         end
 
@@ -12,11 +12,11 @@ module TenantRealm
           raise NotImplementedError
         end
 
-        def cache_tenant(_tenant)
+        def cache_tenant(tenant:)
           raise NotImplementedError
         end
 
-        def tenant(_identifier)
+        def tenant(identifier:)
           raise NotImplementedError
         end
 

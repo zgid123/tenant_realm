@@ -30,8 +30,8 @@ module TenantRealm
 
         return :primary if skip_switch_db
 
-        identifier = Utils.identifier_resolver(request)
-        tenant = Tenant.tenant(identifier)
+        identifier = Utils.identifier_resolver(request:)
+        tenant = Tenant.tenant(identifier:)
         db_config = Utils.dig_db_config(tenant:)
 
         return :primary if db_config.blank?
