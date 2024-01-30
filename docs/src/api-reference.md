@@ -46,7 +46,7 @@ Rails.application.config.to_prepare do
     config.fetch_tenants = lambda { |identifier|
       response = HTTParty.get("http:localhost:3001/api/v1/tenants")
       data = JSON.parse(response.body)['data']
-      data&.deep_symbolize_keys
+      data&.map(&:deep_symbolize_keys)
     }
   end
 end

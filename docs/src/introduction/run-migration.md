@@ -30,3 +30,11 @@ Run rake task to apply this migration to all tenants
 ```sh
 rake tenant_realm:migrate
 ```
+
+# Rollback
+
+Tenant Realm provides a wrapper rollback for all tenants.
+
+```sh
+rake tenant_realm:rollback
+```
