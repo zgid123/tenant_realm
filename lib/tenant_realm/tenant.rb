@@ -36,7 +36,7 @@ module TenantRealm
           cache.cache_tenant(tenant:)
           tenant
         else
-          Utils.fetch_tenant
+          Utils.fetch_tenant(identifier:)
         end
       end
 
